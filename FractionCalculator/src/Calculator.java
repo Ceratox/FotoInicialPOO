@@ -3,6 +3,18 @@ public class Calculator {
 	
 	private Calculator() {}; // Make the constructor private so no one can create a calculator instance
 	
+	// Utilities
+	
+	public static Fraction getAbsoluteValue(Fraction fraction) // Get the absolute value of a fraction
+	{
+		return new Fraction(Math.abs(fraction.getNumerator()),Math.abs(fraction.getDenominator()));
+	}
+	
+	public static Mixed getAbsoluteValue(Mixed mixed) // Get the absolute value of a mixed number
+	{
+		return new Mixed(Math.abs(mixed.getWhole()), Math.abs(mixed.getNumerator()),Math.abs(mixed.getDenominator()));
+	}
+	
 	// Addition
 
 	public static Fraction add(Fraction fraction1, Fraction fraction2) { // Add two fractions : (fraction1 + fraction2)
@@ -148,13 +160,14 @@ public class Calculator {
 	public static Fraction simplify(Fraction fraction) // Simplify a fraction
 	{
 		// Get the biggestNumber number between the absolute value of the numerator and the denominator
-		int biggestNumber = (Math.abs(fraction.getNumerator()) > Math.abs(fraction.getDenominator())) ? Math.abs(fraction.getNumerator()) : Math.abs(fraction.getDenominator());
+		Fraction absFraction = Calculator.getAbsoluteValue(fraction);
+		int biggestNumber = absFraction.getNumerator() > absFraction.getDenominator() ? absFraction.getNumerator() : absFraction.getDenominator();
 		
 		// Check if the fraction is negative
 		boolean isNegative = (fraction.getNumerator() * fraction.getDenominator()) < 0;
 		
-		int newNumerator = Math.abs(fraction.getNumerator()); 
-		int newDenominator = Math.abs(fraction.getDenominator()); 
+		int newNumerator = absFraction.getNumerator();
+		int newDenominator = absFraction.getDenominator();
 		
 		while (biggestNumber > 1)
 		{
@@ -176,14 +189,15 @@ public class Calculator {
 	public static Mixed simplify(Mixed mixed) // Simplify a mixed number
 	{
 		// Get the biggestNumber number between the absolute value of the numerator and the denominator
-		int biggestNumber = (Math.abs(mixed.getNumerator()) > Math.abs(mixed.getDenominator())) ? Math.abs(mixed.getNumerator()) : Math.abs(mixed.getDenominator());
+		Mixed absMixed = Calculator.getAbsoluteValue(mixed);
+		int biggestNumber = absMixed.getNumerator() > absMixed.getDenominator() ? absMixed.getNumerator() : absMixed.getDenominator();
 		
 		boolean isWholeNegative = mixed.getWhole() < 0;
 		boolean isFractionNegative = (mixed.getNumerator() * mixed.getDenominator()) < 0;
 		
-		int newWhole = Math.abs(mixed.getWhole());
-		int newNumerator = Math.abs(mixed.getNumerator()); 
-		int newDenominator = Math.abs(mixed.getDenominator()); 
+		int newWhole = absMixed.getWhole();
+		int newNumerator = absMixed.getNumerator();
+		int newDenominator = absMixed.getDenominator();
 		
 		while (biggestNumber > 1)
 		{
@@ -236,8 +250,10 @@ public class Calculator {
 		// Check if the fraction is negative
 		boolean isNegative = (fraction.getNumerator() * fraction.getDenominator()) < 0;
 		
-		int newNumerator = Math.abs(fraction.getNumerator());
-		int newDenominator = Math.abs(fraction.getDenominator());
+		Fraction absFraction = Calculator.getAbsoluteValue(fraction);
+		
+		int newNumerator = absFraction.getNumerator();
+		int newDenominator = absFraction.getDenominator();
 		
 		while (newNumerator > newDenominator)
 		{
@@ -261,9 +277,11 @@ public class Calculator {
 		
 		boolean isNegative = mixed.getWhole() * mixed.getNumerator() * mixed.getDenominator() < 0;
 		
-		int newWhole = Math.abs(mixed.getWhole());
-		int newNumerator = Math.abs(mixed.getNumerator());
-		int newDenominator = Math.abs(mixed.getDenominator());
+		Mixed absMixed = Calculator.getAbsoluteValue(mixed);
+		
+		int newWhole = absMixed.getWhole();
+		int newNumerator = absMixed.getNumerator();
+		int newDenominator = absMixed.getDenominator();
 		
 		if (isNegative)
 		{
