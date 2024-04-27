@@ -11,17 +11,19 @@ public class StringTool {
 	
 	public static final boolean isNull( final String text)
 	{
-		return text == null;
+		return ObjectHelper.getObjectHelper().isNull(text);
 	}
 	
-	public static final boolean isNullOrEmpty( final String text )
-	{
-		return isNull(text) || EMPTY.equals(applyTrim(text));
-	}
+	/*
+		public static final boolean isNullOrEmpty( final String text )
+		{
+			return isNull(text) || EMPTY.equals(applyTrim(text));
+		}
+	*/
 	
 	public static final String getDefault( final String text, final String defaultValue )
 	{
-		return isNullOrEmpty(text) ? defaultValue : text;
+		return ObjectHelper.getObjectHelper().getDefaultValue(text, defaultValue);
 	}
 	
 	public static final String getDefault( final String text )

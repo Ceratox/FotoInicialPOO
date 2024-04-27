@@ -32,22 +32,22 @@ public final class UserDTO {
 	
 	public UserDTO( 
 			
-			UUID code, 
-			
-			UserTypeDTO type, 
-			
-			UserIdTypeDTO idType, 
-			int id, 
-			String name, 
-			String address,
-			int phone,
-			Email email, 
-			
-			Date signUpDate, 
-			boolean verifiedStatus,
-			
-			String username, 
-			String password
+		UUID code, 
+		
+		UserTypeDTO type, 
+		
+		UserIdTypeDTO idType, 
+		int id, 
+		String name, 
+		String address,
+		int phone,
+		Email email, 
+		
+		Date signUpDate, 
+		boolean verifiedStatus,
+		
+		String username, 
+		String password
 			
 	)
 	{

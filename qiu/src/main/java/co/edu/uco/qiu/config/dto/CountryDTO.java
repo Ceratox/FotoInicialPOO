@@ -14,10 +14,10 @@ public final class CountryDTO {
 		super();
 	}
 	
-	public CountryDTO( final UUID newCode, final String newName )
+	public CountryDTO( final UUID code, final String name )
 	{
-		setCode( newCode );
-		setName( newName );
+		setCode( code );
+		setName( name );
 	}
 	
 	// Setters
