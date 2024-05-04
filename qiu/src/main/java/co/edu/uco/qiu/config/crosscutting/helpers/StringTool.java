@@ -3,6 +3,7 @@ package co.edu.uco.qiu.config.crosscutting.helpers;
 public class StringTool {
 
 	private static final String EMPTY = "";
+	public static final String UNDERSCORE = "_";
 	
 	private StringTool()
 	{
@@ -33,5 +34,20 @@ public class StringTool {
 	
 	public static final String applyTrim( final String text ) {
 		return getDefault(text).trim();
+	}
+	
+	public static final String concatenate(String... strings) 
+	{
+		final var sb = new StringBuilder(EMPTY);
+		
+		if (ObjectHelper.getObjectHelper().isNull(strings))
+		{
+			for (final var string : strings)
+			{
+				sb.append(applyTrim(string));
+			}
+		}
+		
+		return sb.toString();
 	}
 }

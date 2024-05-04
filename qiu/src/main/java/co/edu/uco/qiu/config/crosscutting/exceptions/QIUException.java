@@ -1,6 +1,6 @@
 package co.edu.uco.qiu.config.crosscutting.exceptions;
 
-import co.edu.uco.qiu.config.crosscutting.exceptions.enums.Lugar;
+import co.edu.uco.qiu.config.crosscutting.exceptions.enums.Place;
 import co.edu.uco.qiu.config.crosscutting.helpers.ObjectHelper;
 import co.edu.uco.qiu.config.crosscutting.helpers.StringTool;
 
@@ -8,39 +8,60 @@ public class QIUException extends RuntimeException {
 
 	private static final long serialVersionUID = -1119971647684852037L;
 
-	protected String userMesaage;
-	protected Lugar exceptionPlace;
+	protected String _userMesaage;
+	protected Place _exceptionPlace;
+	protected String _techMessage;
 	
-	public QIUException(final String technicalMessage, final String userMessage, final Lugar exceptionPlace, final Throwable rootException)
+	public QIUException(final String technicalMessage, final String userMessage, final Place exceptionPlace, final Throwable rootException)
 	{
 		super(technicalMessage, rootException);
 		
-		setUserMesaage(userMessage);
+		setUserMessage(userMessage);
 		setExceptionPlace(exceptionPlace);
+		setTechMessage(technicalMessage);
 	}
 	
-	public QIUException(final String userMessage, final Lugar exceptionPlace)
+	public QIUException(final String userMessage, final Place exceptionPlace)
 	{
 		super(userMessage, new Exception());
 		
-		setUserMesaage(userMessage);
+		setUserMessage(userMessage);
 		setExceptionPlace(exceptionPlace);
 	}
-
-	public void setUserMesaage(final String userMesaage) {
-		this.userMesaage = StringTool.applyTrim(userMesaage);
+	
+	public QIUException(final String technicalMessage, final String userMessage, final Place exceptionPlace)
+	{
+		super(userMessage, new Exception());
+		
+		setUserMessage(userMessage);
+		setExceptionPlace(exceptionPlace);
+		setTechMessage(technicalMessage);
 	}
 
-	public void setExceptionPlace(final Lugar lugar) {
-		this.exceptionPlace = ObjectHelper.getObjectHelper().getDefaultValue(lugar, Lugar.DEFAULT);
+	public void setUserMessage(final String userMesaage) {
+		this._userMesaage = StringTool.applyTrim(userMesaage);
+	}
+	
+	public void setTechMessage(final String techMessage)
+	{
+		this._techMessage = techMessage;
+	}
+
+	public void setExceptionPlace(final Place lugar) {
+		this._exceptionPlace = ObjectHelper.getObjectHelper().getDefaultValue(lugar, Place.CONFIG);
 	}
 
 	public final String getUserMesaage() {
-		return this.userMesaage;
+		return this._userMesaage;
 	}
 
-	public final Lugar getExceptionPlace() {
-		return this.exceptionPlace;
+	public final Place getExceptionPlace() {
+		return this._exceptionPlace;
+	}
+	
+	public String getTehMessage()
+	{
+		return this._techMessage;
 	}
 	
 }
