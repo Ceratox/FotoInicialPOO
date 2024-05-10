@@ -31,7 +31,7 @@ public class QIUException extends RuntimeException {
 	
 	public QIUException(final String technicalMessage, final String userMessage, final Place exceptionPlace)
 	{
-		super(userMessage, new Exception());
+		super(technicalMessage, new Exception());
 		
 		setUserMessage(userMessage);
 		setExceptionPlace(exceptionPlace);

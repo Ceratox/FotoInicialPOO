@@ -1,5 +1,7 @@
 package co.edu.uco.qiu.config.crosscutting.helpers;
 
+import java.util.regex.Pattern;
+
 public class StringTool {
 
 	private static final String EMPTY = "";
@@ -40,14 +42,34 @@ public class StringTool {
 	{
 		final var sb = new StringBuilder(EMPTY);
 		
-		if (ObjectHelper.getObjectHelper().isNull(strings))
+		if (!ObjectHelper.getObjectHelper().isNull(strings))
 		{
-			for (final var string : strings)
+			for (final var str : strings)
 			{
-				sb.append(applyTrim(string));
+				sb.append(applyTrim(str));
 			}
 		}
 		
 		return sb.toString();
+	}
+	
+	public static final String replaceParams(final String original, final String... params)
+	{
+		String newString = original;
+		
+		for (int i=0; i < params.length; i++)
+		{
+			final String currentParameter = params[i];
+			
+			newString = newString.replace("{"+i+"}", currentParameter);
+		}
+		
+		return applyTrim(newString);
+	}
+	
+	public static final long messageParameters(final String original)
+	{
+		Pattern pattern = Pattern.compile("\\{\\d\\}");
+		return pattern.matcher(original).results().count();
 	}
 }
